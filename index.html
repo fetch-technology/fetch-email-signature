@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Signature Generator</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.11.1/tachyons.min.css" rel="stylesheet"/>
+  </head>
+  <body class="sans-serif black-80">
+    <div class="mw7 center mt5">
+      <div id="app"></div>
+    </div>
+
+    <script type="text/ractive" id="template">
+      <div class="flex">
+        <div class="form w-50 mr4">
+          <input type="text" value="{{name}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Name"/>
+          <input type="text" value="{{initial}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Initial"/>
+          <input type="text" value="{{title}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Title"/>
+          <input type="text" value="{{email}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Email"/>
+          <input type="text" value="{{tel}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Tel"/>
+          <input type="text" value="{{skype}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Skype"/>
+        </div>
+        <div class="preview col-5">
+          <div id="result" class="ba b--black-40 pa4">
+            <table style="font-family:sans-serif;font-size:12px">
+              <tr>
+                <td style="border-right:1px solid #218D99">
+                  <img width="120" alt="Fetch Technology Pte. Ltd" src="https://fetch.tech/logo.png">
+                </td>
+                <td style="padding-left:1rem">
+                  <strong>{{name}} ({{initial}})</strong>
+                  <p style="margin-top:0">{{title}} | Fetch Technology Pte. Ltd.</p>
+                  <p>
+                    Email: <a href="mailto:{{email}}" title="Email">{{email}}</a><br>
+                    Tel: <a href="tel:{{clean(tel)}}" title="Telephone number">{{tel}}</a><br>
+                    Skype: <a href="skype:{{skype}}" title="Skype">{{skype}}</a>
+                  </p>
+                  <p>
+                    Website: <a href="https://fetch.tech" title="Website">https://fetch.tech</a><br>
+                    Facebook: <a href="https://fb.me/fetchvietnam" title="Facebook page">https://fb.me/fetchvietnam</a>
+                  </p>
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <button class="b ph3 pv2 input-reset ba b--black bg-transparent pointer f6 mt3 db center" on-click="copy-to-clipboard">Copy to clipboard</button>
+        </div>
+      </div>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ractive/1.0.0-build-99/ractive.min.js"></script>
+    <script>
+      new Ractive({
+        el: document.querySelector('#app'),
+        template: '#template',
+        data: {
+          name: 'Tung Dao',
+          initial: 'Mr.',
+          title: 'CTO',
+          email: 'tungd@fetch.tech',
+          tel: '(+84) 165 239 7189',
+          skype: 'tungddao',
+          clean: s => s.replace(/[^\w+]/g, '')
+        },
+        on: {
+          'copy-to-clipboard': e => {
+            const selection = window.getSelection()
+            const range = document.createRange()
+            console.log(e.get('@').find('#result'))
+            range.selectNodeContents(e.get('@').find('#result'))
+            selection.removeAllRanges()
+            selection.addRange(range)
+            document.execCommand('copy')
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
