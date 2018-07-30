@@ -4,14 +4,22 @@
     <meta charset="UTF-8"/>
     <title>Signature Generator</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.11.1/tachyons.min.css" rel="stylesheet"/>
+    <style>
+      .skype {
+        color: #3EAFDF;
+        border-color: #3EAFDF;
+      }
+      a.skype:hover {
+        color: #fff;
+        background-color: #3EAFDF
+      }
+    </style>
   </head>
   <body class="sans-serif black-80">
-    <div class="mw7 center mt5">
-      <div id="app"></div>
-    </div>
+    <div id="app"></div>
 
     <script type="text/ractive" id="template">
-      <div class="flex">
+      <div class="flex mw7 center mt6">
         <div class="form w-50 mr4">
           <input type="text" value="{{name}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Name"/>
           <input type="text" value="{{initial}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Initial"/>
@@ -49,37 +57,60 @@
       </div>
     </script>
 
+    <script type="ractive/template" id="template-skype">
+      <div class="w-100 min-vh-100 flex items-center justify-center">
+        <div class="tc">
+          <img class="ba skype br-100" alt="{{skype}} avatar" src="https://avatar.skype.com/v1/avatars/{{skype}}?auth_key=-732001358&size=l"/>
+          <h1 class="skype f3">{{skype}}</h1>
+          <a href="skype:{{skype}}" class="b ph3 pv2 ba br4 skype f6 mt3 w3 link tc" on-click="copy-to-clipboard">
+            Call on Skype
+          </a>
+        </div>
+      </div>
+    </script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ractive/1.0.0-build-99/ractive.min.js"></script>
     <script>
       var match
       if (match = /\?skype=(.+)/.exec(window.location.search)) {
-        window.location = `skype:${match[1]}?add`
-      }
+        /* window.location = `skype:${match[1]}?chat` */
 
-      new Ractive({
-        el: document.querySelector('#app'),
-        template: '#template',
-        data: {
-          name: 'Tung Dao',
-          initial: 'Mr.',
-          title: 'CTO',
-          email: 'tungd@fetch.tech',
-          tel: '(+84) 165 239 7189',
-          skype: 'tungddao',
-          clean: s => s.replace(/[^\w+]/g, '')
-        },
-        on: {
-          'copy-to-clipboard': e => {
-            const selection = window.getSelection()
-            const range = document.createRange()
-            console.log(e.get('@').find('#result'))
-            range.selectNodeContents(e.get('@').find('#result'))
-            selection.removeAllRanges()
-            selection.addRange(range)
-            document.execCommand('copy')
+        new Ractive({
+          el: document.querySelector('#app'),
+          template: '#template-skype',
+          data: {
+            skype: match[1],
+            // New Skype app (both desktop and mobile) doesn't support actions yet
+            // actions: ['Add', 'Chat', 'Call'],
+            downcase: s => s.toLowerCase()
           }
-        }
-      })
+        })
+      } else {
+        new Ractive({
+          el: document.querySelector('#app'),
+          template: '#template',
+          data: {
+            name: 'Tung Dao',
+            initial: 'Mr.',
+            title: 'CTO',
+            email: 'tungd@fetch.tech',
+            tel: '(+84) 165 239 7189',
+            skype: 'tungddao',
+            clean: s => s.replace(/[^\w+]/g, '')
+          },
+          on: {
+            'copy-to-clipboard': e => {
+              const selection = window.getSelection()
+              const range = document.createRange()
+              console.log(e.get('@').find('#result'))
+              range.selectNodeContents(e.get('@').find('#result'))
+              selection.removeAllRanges()
+              selection.addRange(range)
+              document.execCommand('copy')
+            }
+          }
+        })
+      }
     </script>
   </body>
 </html>
