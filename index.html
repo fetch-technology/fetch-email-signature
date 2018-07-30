@@ -33,7 +33,7 @@
                   <p>
                     Email: <a href="mailto:{{email}}" title="Email">{{email}}</a><br>
                     Tel: <a href="tel:{{clean(tel)}}" title="Telephone number">{{tel}}</a><br>
-                    Skype: <a href="skype:{{skype}}" title="Skype">{{skype}}</a>
+                    Skype: <a href="https://fetch.tech/email-signature/?skype={{skype}}" title="Skype">{{skype}}</a>
                   </p>
                   <p>
                     Website: <a href="https://fetch.tech" title="Website">https://fetch.tech</a><br>
@@ -51,6 +51,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ractive/1.0.0-build-99/ractive.min.js"></script>
     <script>
+      var match
+      if (match = /\?skype=(.+)/.exec(window.location.search)) {
+        window.location = `skype:${match[1]}?add`
+      }
+
       new Ractive({
         el: document.querySelector('#app'),
         template: '#template',
