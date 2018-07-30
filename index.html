@@ -4,6 +4,7 @@
     <meta charset="UTF-8"/>
     <title>Signature Generator</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tachyons/4.11.1/tachyons.min.css" rel="stylesheet"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <style>
       .skype {
         color: #3EAFDF;
@@ -73,7 +74,7 @@
     <script>
       var match
       if (match = /\?skype=(.+)/.exec(window.location.search)) {
-        /* window.location = `skype:${match[1]}?chat` */
+        window.location = `skype:${match[1]}?chat`
 
         new Ractive({
           el: document.querySelector('#app'),
@@ -82,7 +83,7 @@
             skype: match[1],
             // New Skype app (both desktop and mobile) doesn't support actions yet
             // actions: ['Add', 'Chat', 'Call'],
-            downcase: s => s.toLowerCase()
+            // downcase: s => s.toLowerCase()
           }
         })
       } else {
