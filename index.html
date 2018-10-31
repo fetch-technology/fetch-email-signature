@@ -14,6 +14,9 @@
         color: #fff;
         background-color: #3EAFDF
       }
+      .fetch-blue, a {
+        color: #12bec6;
+      }
     </style>
   </head>
   <body class="sans-serif black-80">
@@ -21,7 +24,7 @@
 
     <script type="text/ractive" id="template">
       <div class="flex flex-column-reverse flex-row-ns mw7-ns center-ns mt4 mt6-ns pa3">
-        <div class="form w-50-ns mr4-ns mt4 mt0-ns">
+        <div class="form w-30-ns mr4-ns mt4 mt0-ns">
           <input type="text" value="{{name}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Name"/>
           <input type="text" value="{{initial}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Initial"/>
           <input type="text" value="{{title}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Title"/>
@@ -29,15 +32,15 @@
           <input type="text" value="{{tel}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Tel"/>
           <input type="text" value="{{skype}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Skype"/>
         </div>
-        <div class="preview">
+        <div class="preview lh-copy">
           <div id="result" class="ba b--black-40 pa4">
-            <table style="font-family:sans-serif;font-size:12px">
+            <table style="font-family:sans;font-size:12px">
               <tr>
                 <td style="border-right:1px solid #218D99">
                   <img width="120" alt="Fetch Technology Pte. Ltd" src="https://fetch.tech/logo.png">
                 </td>
                 <td style="padding-left:1rem">
-                  <strong>{{name}} ({{initial}})</strong>
+                  <strong class="fetch-blue"style="font-size:16px">{{name}} ({{initial}})</strong>
                   <p style="margin-top:0">{{title}} | Fetch Technology Pte. Ltd.</p>
                   <p>
                     Email: <a href="mailto:{{email}}" title="Email">{{email}}</a><br>
@@ -46,8 +49,12 @@
                   </p>
                   <p>
                     Website: <a href="https://fetch.tech" title="Website">https://fetch.tech</a><br>
-                    Facebook: <a href="https://fb.me/fetchvietnam" title="Facebook page">https://fb.me/fetchvietnam</a>
                   </p>
+                  <strong class="fetch-blue">Ho Chi Minh</strong>
+                  <p style="margin:0">- 42B Ho Ba Phan Street, Ward Phuoc Long A, District 9, HCMC.</p>
+                  <p style="margin:0">- 473 Dien Bien Phu Street, Ward 25, Binh Thanh District.</p>
+                  <strong class="fetch-blue">Ha Noi</strong>
+                  <p style="margin:0">- 82 Lane, Duy Tan Street, Ward Dich Vong Hau, Cau Giay District.</p>
                 </td>
               </tr>
             </table>
