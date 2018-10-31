@@ -40,12 +40,12 @@
                   <strong style="color:#429697;font-size:14px;font-weight:600">{{name}} ({{initial}})</strong>
                   <p style="margin-top:0">{{title}} | Fetch Technology Pte. Ltd.</p>
                   <p style="margin-bottom:0">
-                    Email: <a href="mailto:{{email}}" title="Email">{{email}}</a><br>
-                    Tel: <a href="tel:{{clean(tel)}}" title="Telephone number">{{tel}}</a><br>
-                    Skype: <a href="skype:{{skype}}?chat" title="Skype">{{skype}}</a>
+                    Email: <a href="mailto:{{email}}">{{email}}</a><br>
+                    Tel: <a href="tel:{{clean(tel)}}">{{tel}}</a><br>
+                    Skype: <a href="https://fetch.tech/email-signature/?skype={{skype}}">{{skype}}</a>
                   </p>
                   <p style="margin-top:0">
-                    Website: <a href="https://fetch.tech" title="Website">https://fetch.tech</a><br>
+                    Website: <a href="https://fetch.tech">https://fetch.tech</a><br>
                   </p>
                   <strong style="color:#429697;font-weight:600">Ho Chi Minh</strong>
                   <p style="margin:0">- 42B Ho Ba Phan Street, Ward Phuoc Long A, District 9, HCMC.</p>
@@ -107,7 +107,6 @@
             'copy-to-clipboard': e => {
               const selection = window.getSelection()
               const range = document.createRange()
-              console.log(e.get('@').find('#result'))
               range.selectNodeContents(e.get('@').find('#result'))
               selection.removeAllRanges()
               selection.addRange(range)
