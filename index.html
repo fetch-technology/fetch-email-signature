@@ -14,46 +14,43 @@
         color: #fff;
         background-color: #3EAFDF
       }
-      .fetch-blue, a {
-        color: #12bec6;
-      }
     </style>
   </head>
   <body class="sans-serif black-80">
     <div id="app"></div>
 
     <script type="text/ractive" id="template">
-      <div class="flex flex-column-reverse flex-row-ns mw7-ns center-ns mt4 mt6-ns pa3">
+      <div class="flex flex-column-reverse flex-row-ns mw8-ns center-ns mt4 mt6-ns pa3">
         <div class="form w-30-ns mr4-ns mt4 mt0-ns">
-          <input type="text" value="{{name}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Name"/>
-          <input type="text" value="{{initial}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Initial"/>
-          <input type="text" value="{{title}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Title"/>
-          <input type="text" value="{{email}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Email"/>
-          <input type="text" value="{{tel}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Tel"/>
-          <input type="text" value="{{skype}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Skype"/>
+          <input type="text" value="{{name}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Full name"/>
+          <input type="text" value="{{initial}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Initial (Mr, Ms, Mrs)"/>
+          <input type="text" value="{{title}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Title (CEO, COO, Manager)"/>
+          <input type="text" value="{{email}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Email address"/>
+          <input type="text" value="{{tel}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Tel i.e: (+84) 89 858 9102"/>
+          <input type="text" value="{{skype}}" class="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Skype username"/>
         </div>
         <div class="preview lh-copy">
           <div id="result" class="ba b--black-40 pa4">
-            <table style="font-family:sans;font-size:12px">
+            <table style="font-size:12px">
               <tr>
                 <td style="border-right:1px solid #218D99">
                   <img width="120" alt="Fetch Technology Pte. Ltd" src="https://fetch.tech/logo.png">
                 </td>
                 <td style="padding-left:1rem">
-                  <strong class="fetch-blue"style="font-size:16px">{{name}} ({{initial}})</strong>
+                  <strong style="color:#429697;font-size:14px;font-weight:600">{{name}} ({{initial}})</strong>
                   <p style="margin-top:0">{{title}} | Fetch Technology Pte. Ltd.</p>
-                  <p>
+                  <p style="margin-bottom:0">
                     Email: <a href="mailto:{{email}}" title="Email">{{email}}</a><br>
                     Tel: <a href="tel:{{clean(tel)}}" title="Telephone number">{{tel}}</a><br>
-                    Skype: <a href="https://fetch.tech/email-signature/?skype={{skype}}" title="Skype">{{skype}}</a>
+                    Skype: <a href="skype:{{skype}}?chat" title="Skype">{{skype}}</a>
                   </p>
-                  <p>
+                  <p style="margin-top:0">
                     Website: <a href="https://fetch.tech" title="Website">https://fetch.tech</a><br>
                   </p>
-                  <strong class="fetch-blue">Ho Chi Minh</strong>
+                  <strong style="color:#429697;font-weight:600">Ho Chi Minh</strong>
                   <p style="margin:0">- 42B Ho Ba Phan Street, Ward Phuoc Long A, District 9, HCMC.</p>
                   <p style="margin:0">- 473 Dien Bien Phu Street, Ward 25, Binh Thanh District.</p>
-                  <strong class="fetch-blue">Ha Noi</strong>
+                  <strong style="color:#429697;font-weight:600">Ha Noi</strong>
                   <p style="margin:0">- 82 Lane, Duy Tan Street, Ward Dich Vong Hau, Cau Giay District.</p>
                 </td>
               </tr>
@@ -98,12 +95,12 @@
           el: document.querySelector('#app'),
           template: '#template',
           data: {
-            name: 'Tung Dao',
-            initial: 'Mr.',
-            title: 'CTO',
-            email: 'tungd@fetch.tech',
-            tel: '(+84) 165 239 7189',
-            skype: 'tungddao',
+            name: '',
+            initial: '',
+            title: '',
+            email: '',
+            tel: '',
+            skype: '',
             clean: s => s.replace(/[^\w+]/g, '')
           },
           on: {
