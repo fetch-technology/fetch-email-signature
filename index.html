@@ -103,13 +103,13 @@
           el: document.querySelector('#app'),
           template: '#template',
           data: {
-            name: '',
-            initial: '',
-            title: '',
-            email: '',
-            tel: '',
-            skype: '',
-            clean: s => s.replace(/[^\w+]/g, '')
+            name   : localStorage.name || '',
+            initial: localStorage.initial || '',
+            title  : localStorage.title || '',
+            email  : localStorage.email || '',
+            tel    : localStorage.tel || '',
+            skype  : localStorage.skype || '',
+            clean  : s => s.replace(/[^\w+]/g, '')
           },
           on: {
             'copy-to-clipboard': e => {
@@ -119,6 +119,26 @@
               selection.removeAllRanges()
               selection.addRange(range)
               document.execCommand('copy')
+            }
+          },
+          observe: {
+            name: (value) => {
+              localStorage.name = value
+            },
+            initial: (value) => {
+              localStorage.initial = value
+            },
+            title: (value) => {
+              localStorage.title = value
+            },
+            email: (value) => {
+              localStorage.email = value
+            },
+            tel: (value) => {
+              localStorage.tel = value
+            },
+            skype: (value) => {
+              localStorage.skype = value
             }
           }
         })
